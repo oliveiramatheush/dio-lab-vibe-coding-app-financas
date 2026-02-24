@@ -1,88 +1,96 @@
 # 💸 App de Organização de Finanças Pessoais com Vibe Coding
 
-Aprenda a **criar soluções com IA** de forma criativa, guiando ferramentas como o **Copilot** e o **Lovable** com uma comunicação simples e natural. O foco é desenvolver o conceito de um **App de Organização de Finanças Pessoais**, mas, acima de tudo, aprender o **jeito Vibe de programar com IA**.
+**PRD Refinado no Gemini:**
 
-## ✨ O que é Vibe Coding
+```Prompt
+Aja como um desenvolvedor Full Stack Sênior e arquiteto de software. Crie um Web App de Finanças Pessoais Conversacional chamado VibeFinance utilizando React, Tailwind CSS, Shadcn/UI e Firebase.
 
-**Vibe Coding** é uma forma leve e criativa de desenvolver com IA, baseada em **conversas naturais e bem estruturadas**. Você não precisa escrever código linha por linha. Em vez disso, aprende a **guiar a IA** descrevendo suas ideias de forma clara, com **intenção e contexto**. Em outras palavras:
+1. Configuração do Firebase:
 
-> Você mostra a vibe da sua ideia e a IA transforma em solução (ou em um caminho para ela).
+Autenticação: Implemente login via Google e E-mail (Firebase Auth). O app deve ter uma 'Landing Page' de boas-vindas para usuários deslogados.
 
-## 🎯 Desafio
+Firestore: Crie uma coleção transactions vinculada ao uid do usuário. Campos: description (string), amount (number), category (string), type (income/expense), e createdAt (timestamp).
 
-Problema: Muitas pessoas não conseguem manter um controle financeiro porque os aplicativos exigem muita entrada de dados manual, e a criação de orçamentos é vista como algo tedioso. 
+Persistência: Garanta que os dados sejam lidos e gravados em tempo real no Firestore.
 
-Precisamos de uma solução que permita **controlar as finanças por meio de uma conversa simples**, com **agentes de IA** capazes de criar **planos de economia personalizados e automatizados**. Você deve utilizar as ideias de **Vibe Coding** e **MVP (Produto Mínimo Viável)** para desenvolver o **conceito de um aplicativo** que resolva o problema citado.
+2. Interface 'Zero UI' (Chat-First):
 
-> [!IMPORTANT]
-> Você **não precisa construir o código**! O foco está em **usar a IA como sua parceira criativa**, transformando boas ideias e prompts em conceitos funcionais que simulam um produto real.
+Layout mobile-first com abas inferiores: 💬 Chat, 📊 Dashboard e 🎯 Metas.
 
-## 🪄 Etapas do Desafio
+Mensagem de Boas-Vindas: Ao logar pela primeira vez, o Agente deve dizer: 'Olá! Sou seu assistente do VibeFinance. 🚀 Guardar dinheiro não precisa ser chato. Sempre que gastar ou receber algo, é só me contar aqui. Ex: "Gastei 30 no Uber" ou "Recebi 5000 de salário". Por onde quer começar?'
 
-### 1. Saber o que Pedir é a Chave! Otimize seus Prompts!
+3. Engine de Processamento de Linguagem (NLP Simulado):
+Desenvolva uma função que processe a entrada do usuário e classifique automaticamente usando este dicionário:
 
-Antes de pedir para a IA "criar um app", é importante definir com clareza o que você quer construir e por quê. Para isso, você vai criar um **PRD (Product Requirements Document)** simplificado, uma especificação que serve como _briefing_ para a IA entender sua ideia.
+Essenciais: Aluguel, Condomínio, Luz, Água, Internet, Mercado, Feira.
 
-Um bom PRD deve descrever o problema, quem será beneficiado, as principais funcionalidades e o que você espera que a IA entregue. Use o modelo abaixo como ponto de partida e adapte conforme o seu estilo:
+Alimentação: Restaurante, Ifood, Pizza, Lanche, Almoço, Café, Padaria.
 
-```txt
-# Contexto
-Quero criar um aplicativo de Organização de Finanças Pessoais que funcione por meio de conversas com o usuário.  
-A ideia é facilitar o controle financeiro de forma simples e natural, sem formulários manuais ou planilhas complexas.
+Transporte: Uber, 99, Gasolina, Combustível, Ônibus, Metrô.
 
-# Problema
-Muitas pessoas desistem de controlar seus gastos porque os apps atuais exigem muita entrada manual e pouca personalização.  
-Quero resolver isso com uma experiência de conversa e recomendações automáticas de economia.
+Lazer: Cinema, Show, Bar, Cerveja, Netflix, Spotify, Viagem.
 
-# Público-Alvo
-Pessoas que querem começar a organizar suas finanças de forma prática e sem complicação, principalmente iniciantes.
+Saúde: Farmácia, Remédio, Médico, Academia.
 
-# Funcionalidades-Chave
-1. Registrar gastos via chat em linguagem natural.  
-2. Classificar automaticamente as transações.  
-3. Definir e acompanhar metas financeiras.  
-4. Receber dicas de economia do “Agente Financeiro”.  
-5. Visualizar relatórios simples e personalizados.
+Entradas: Salário, Bônus, Pix, Recebi, Pagamento, Freelance.
+Lógica: Identifique o valor numérico na frase. Se não houver categoria clara, salve como 'Outros' e peça confirmação.
 
-# Entregável da IA
-Gerar um plano de MVP com as principais telas, recursos necessários e um esboço de validação inicial.  
-Usar tom educativo e linguagem acessível, em português.
+4. Dashboard e Inteligência do Agente:
+
+Visão de Sobrevivência: No Dashboard, exiba o 'Saldo Livre' (Receitas - Despesas Essenciais).
+
+Gráficos: Use Recharts para um gráfico de pizza por categoria e um gráfico de barras comparando Entradas vs Saídas.
+
+Alertas Proativos: Se o gasto total de uma categoria exceder 70% da média mensal, o Agente deve enviar uma mensagem de alerta no chat: '⚠️ Opa! Seus gastos com [Categoria] estão acima do normal hoje. Vamos dar uma segurada?'
+
+5. Estética e UX:
+
+Estilo 'Minimalista Moderno' com bordas arredondadas e sombras suaves.
+
+Use ícones da Lucide-React.
+
+Use tons de verde para ganhos e tons de coral/vermelho para gastos.
+
+Implemente 'Toasts' para confirmar cada transação salva com sucesso."
 ```
 
-Depois de preencher o modelo, use o Copilot Web para revisar e melhorar o seu prompt antes de ir ao Lovable. A ideia é lapidar o texto até que ele fique claro, direto e reflita exatamente a sua intenção.
+**Interações com a IA (Firebase Studio) e configurações principais:**
+- Necessário configurar uma chave API para vínculo com o sistema de autenticação, esta chave pode ser gerada no console do Google Cloud. Após gerada e confirgurada, informei através do console da própria IA do Firebase Studio (Não compartilhe sua chave API com ninguém).
+- Para a tela de login, foi necessário criar uma condição do Firebase Console, em Criação>Authentication>Método de Login: E-mail/senha e Google - Habilitadas essas duas chaves, o sistema já estava pronto para uso. Ou então solicitar a criação de usuário teste.
+- Necessário ativar API Gemini no Google Cloud para a interpretação de linguagem natural.
 
-> [!TIP]
-> Pense no PRD/Prompt como “o briefing que a IA precisa para entender sua vibe”. Portanto, quanto mais claro e intencional for o texto, mais próximas do ideal serão as respostas da IA.
+**Resumo sobre o que o App de finanças faz:**
 
-### 2. Explorando o Lovable na Prática
+🚀 VibeFinance: O Fim das Planilhas Chatas
+O VibeFinance é um assistente pessoal de finanças que transforma a gestão do dinheiro em uma conversa casual. Em vez de formulários complexos e tabelas infinitas, o usuário organiza sua vida financeira apenas conversando.
 
-Com seu PRD pronto e revisado, é hora de colocar a IA em ação. Abra o Lovable, cole seu prompt completo e peça o plano inicial do MVP do seu aplicativo. Como o plano gratuito limita você a 5 interações por dia, seja estratégico:
-- Faça perguntas diretas e construtivas, como “crie o fluxo de telas com base nas funcionalidades listadas” ou “gere uma versão resumida do plano de MVP”;
-- Priorize clareza nas instruções para aproveitar ao máximo cada resposta;
+🧠 O Conceito: "Zero UI"
+Acreditamos que o melhor app de finanças é aquele que não parece um app de finanças. O foco total está na linguagem natural: você fala como se estivesse mandando um zap para um amigo, e a inteligência do sistema cuida do resto.
 
-Durante essa etapa, você pode orientar a IA para três entregas principais:
-1. Agente Financeiro: defina o comportamento e o tom de voz de um consultor financeiro pessoal, alinhado ao público e objetivo do app.
-2. Fluxo de Telas: peça à IA para gerar o fluxo conceitual de telas com base nas funcionalidades descritas no PRD, simulando a interação por conversa.
-3. Plano de MVP: solicite um resumo das 5 funcionalidades principais, dos recursos necessários e um plano de validação inicial (como medir se o app cumpre seu propósito).
+🛠️ O que ele faz?
+Registro Instantâneo: Digite "Gastei 50 no restaurante" ou "Caiu meu bônus de 200" e o sistema processa os dados em milissegundos.
 
-> [!TIP]
-> Se preferir, você pode fazer tudo com o **Copilot**. O importante é exercitar a habilidade de transformar intenções em instruções claras e testar os limites da IA como parceira criativa.
+Classificação Inteligente: Através da integração com o Gemini AI, o app identifica automaticamente se o gasto foi com Transporte, Lazer, Saúde ou Essenciais.
 
-### 3. Entregando o Desafio na DIO
+Dashboard em Tempo Real: Uma visão visual limpa (gráficos e indicadores) alimentada por um banco de dados Firebase, mostrando exatamente para onde seu dinheiro está indo.
 
-Finalize seu projeto criando um **repositório no GitHub** (pode ser um **fork** deste).  
-No README do seu repositório, inclua:
+Agente Financeiro Proativo: Mais que um banco de dados, o app atua como um mentor, enviando alertas quando você está prestes a estourar o orçamento de uma categoria.
 
-- Seu **prompt final** (PRD);  
-- Prints ou pequenos vídeos das interações com a IA;  
-- Um resumo do que o seu **App de Finanças Pessoais** faz;  
-- Uma breve **reflexão sobre o processo**:
-  - O que funcionou bem?  
-  - O que não funcionou como o esperado?  
-  - O que aprendeu sobre conversar com IAs?
+💻 Diferenciais Técnicos
+Arquitetura Serverless: Escalável e seguro usando Firebase Auth e Firestore.
 
-> [!TIP]
-> Publique seu repositório e compartilhe o link na plataforma da DIO! Sua entrega é a prova de que você domina o raciocínio de Vibe Coding, mesmo sem escrever uma única linha de código.
+NLP de Última Geração: Processamento de linguagem natural via Gemini 1.5 Flash.
+
+Mobile-First: Design pensado para ser ágil, minimalista e acessível em qualquer lugar.
+
+"VibeFinance: Porque controlar seu dinheiro deve ser tão fácil quanto gastar ele."
+
+**Prints**
+
+<img width="1347" height="628" alt="image" src="https://github.com/user-attachments/assets/210559a6-6dd3-4b13-bb49-2cd71dc56f93" />
+<img width="856" height="516" alt="image" src="https://github.com/user-attachments/assets/27422270-0170-41b6-bfd4-bebe1a8609ac" />
+<img width="845" height="445" alt="image" src="https://github.com/user-attachments/assets/927b11c4-23ae-4192-927d-fcbcda84b724" />
+<img width="849" height="510" alt="image" src="https://github.com/user-attachments/assets/2b6bdc9b-0ce0-42a9-bc3f-465eb533258a" />
 
 ## 💬 Conclusão
 
